@@ -21,9 +21,9 @@ export function UserCard({ user, index }: UserCardProps) {
         ease: "easeOut"
       }}
     >
-      <Card className="overflow-hidden hover:shadow-md transition-shadow duration-300">
-        <CardHeader className="bg-secondary/50 pb-3">
-          <CardTitle className="text-lg font-medium">{user.name}</CardTitle>
+      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 border-0 bg-white dark:bg-slate-900">
+        <CardHeader className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-700 pb-4 pt-6">
+          <CardTitle className="text-xl font-bold text-white">{user.name}</CardTitle>
         </CardHeader>
         <CardContent className="pt-4 space-y-3">
           <div className="flex items-center text-sm">

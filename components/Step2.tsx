@@ -1,6 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { addressSchema, AddressValues } from '@/lib/validation';
 import { Button } from '@/components/ui/button';
@@ -23,6 +24,15 @@ export function Step2({ data, updateData, onNext, onPrev }: Step2Props) {
       zipcode: data.zipcode || '',
     },
   });
+
+  // Reset form values when data prop changes
+  useEffect(() => {
+    form.reset({
+      street: data.street || '',
+      city: data.city || '',
+      zipcode: data.zipcode || '',
+    });
+  }, [data, form]);
   
   const onSubmit = (values: AddressValues) => {
     updateData(values);

@@ -19,23 +19,36 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   
+  const fetchUsers = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const data = await getUsers();
+      setUsers(data);
+      setFilteredUsers(data);
+    } catch (err) {
+      setError('Failed to load users. Please try again later.');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const data = await getUsers();
-        setUsers(data);
-        setFilteredUsers(data);
-      } catch (err) {
-        setError('Failed to load users. Please try again later.');
-        console.error(err);
-      } finally {
-        setIsLoading(false);
+    fetchUsers();
+    
+    // Refresh users when the page becomes visible (e.g., when returning from add user page)
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchUsers();
       }
     };
     
-    fetchUsers();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
   
   useEffect(() => {

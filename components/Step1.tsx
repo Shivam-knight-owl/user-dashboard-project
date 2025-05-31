@@ -1,6 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { basicInfoSchema, BasicInfoValues } from '@/lib/validation';
 import { Button } from '@/components/ui/button';
@@ -22,6 +23,15 @@ export function Step1({ data, updateData, onNext }: Step1Props) {
       phone: data.phone || '',
     },
   });
+
+  // Reset form values when data prop changes
+  useEffect(() => {
+    form.reset({
+      name: data.name || '',
+      email: data.email || '',
+      phone: data.phone || '',
+    });
+  }, [data, form]);
   
   const onSubmit = (values: BasicInfoValues) => {
     updateData(values);

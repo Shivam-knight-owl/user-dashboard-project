@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Users, Plus } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function Header() {
   const pathname = usePathname();
@@ -44,6 +45,8 @@ export function Header() {
               <Plus className="h-4 w-4" />
               <span>Add User</span>
             </Link>
+            
+            <ThemeToggle />
           </nav>
         </div>
       </div>
