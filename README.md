@@ -110,7 +110,7 @@ project/
 1. **Clone the repository**
 ```bash
 git clone https://github.com/Shivam-knight-owl/user-dashboard-project
-cd user-dashboard-project
+cd user-dashboard-project/project
 ```
 
 2. **Install dependencies**
